@@ -59,7 +59,7 @@ public extension JHTextField {
         }
     }
     
-    /// 全局展位符
+    /// 全局占位符
     ///
     /// Default: nil
     static var placeholder: String? {

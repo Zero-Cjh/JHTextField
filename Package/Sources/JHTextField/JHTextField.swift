@@ -9,7 +9,301 @@
 import UIKit
 import SnapKit
 
-public class JHTextField: UIView {
+@objc public enum ActionPolicyType: NSInteger {
+    case Success
+    case Fail
+}
+
+@objc public protocol JHTextFieldDelegate: NSObjectProtocol {
+    
+    /// 在此进行获取验证码操作
+    /// - Parameters:
+    ///   - textField: 响应对象
+    ///   - actionPolicy: 操作策略，如果为true则开始倒计时，time必须大于0
+    func didClickGetVerifyCode(_ textField: JHTextField, actionPolicy: ( @escaping (_ action: ActionPolicyType, _ time: Int) -> ()))
+    
+    /// 在此进行重置获取验证码操作
+    /// - Parameters:
+    ///   - textField: 响应对象
+    ///   - actionProlicy: 操作策略，如果为true则为重置成功，textField会自动进入可获取验证码状态
+    func resetVerifyCode(_ textField: JHTextField, actionProlicy: ( @escaping (_ action: ActionPolicyType) -> (Void)))
+    
+    /// 重置获取验证码完成
+    /// - Parameter textField: 响应对象
+    func resetVerifyCodeDidFinished(_ textField: JHTextField)
+}
+
+@objc public class JHTextField: UIView {
+    
+    // MARK: - Public
+    
+    /// 代理
+    @objc public var delegate: JHTextFieldDelegate? {
+        get {
+            return _delegate
+        }
+        set {
+            _delegate = newValue
+        }
+    }
+    
+    /// 间隔
+    @objc public var padding: Double {
+        get {
+            return _padding
+        }
+        set {
+            _padding = newValue
+            self.updateConstraints()
+        }
+    }
+    
+    /// 左侧未选中图片
+    @objc public var leftUnSelectedImage: UIImage? {
+        get {
+            return self.leftImageView.image
+        }
+        set {
+            self.leftImageView.image = newValue
+        }
+    }
+    
+    /// 左侧选中图片
+    @objc public var leftSelectedImage: UIImage? {
+        get {
+            return self.leftImageView.highlightedImage
+        }
+        set {
+            self.leftImageView.highlightedImage = newValue
+        }
+    }
+    
+    /// 输入文本字体
+    @objc public var font: UIFont? {
+        get {
+            return self.textField.font
+        }
+        set {
+            self.textField.font = newValue
+        }
+    }
+    
+    /// 下一个输入框
+    ///
+    /// Default: nil
+    @objc public var nextTextField: JHTextField? {
+        get {
+            return _nextTextField
+        }
+        set {
+            _nextTextField = newValue
+            if newValue != nil {
+                self.textField.returnKeyType = .next
+            } else {
+                self.textField.returnKeyType = .done
+            }
+        }
+    }
+    
+    /// 占位符
+    @objc public var placeholder: String? {
+        get {
+            return self.textField.placeholder
+        }
+        set {
+            self.textField.placeholder = newValue
+        }
+    }
+    
+    /// 清除按钮模式
+    @objc public var clearButtonMode: UITextField.ViewMode {
+        get {
+            return self.textField.clearButtonMode
+        }
+        set {
+            self.textField.clearButtonMode = newValue
+        }
+    }
+    
+    /// 是否设置为安全文本
+    ///
+    /// Default: false
+    @objc public var isSecureTextEntry: Bool {
+        get {
+            return self.textField.isSecureTextEntry
+        }
+        set {
+            self.textField.isSecureTextEntry = newValue
+            self.eyeImageView.isHighlighted = newValue
+        }
+    }
+    
+    /// 是否显示眼睛👀
+    ///
+    /// Default: false
+    @objc public var isAddEyeImage: Bool {
+        get {
+            return _isAddEyeImage
+        }
+        set {
+            _isAddEyeImage = newValue
+            self.updateConstraints()
+        }
+    }
+    
+    /// 键盘样式
+    @objc public var keyboardType: UIKeyboardType {
+        get {
+            return self.textField.keyboardType
+        }
+        set {
+            self.textField.keyboardType = newValue
+        }
+    }
+    
+    /// 是否为验证码输入框
+    ///
+    /// Default: false
+    @objc public var isVerifyTextField: Bool {
+        get {
+            return _isVerifyTextField
+        }
+        set {
+            _isVerifyTextField = newValue
+            self.updateConstraints()
+        }
+    }
+    
+    /// 获取验证码文字
+    @objc public var getVerifyCodeText: String {
+        get {
+            return _getVerifyText
+        }
+        set {
+            _getVerifyText = newValue
+            self.timer?.invalidate()
+            self.timer = nil
+            self.getVerifyCodeLabel.text = newValue
+            self.updateConstraints()
+        }
+    }
+    
+    /// 重发字样
+    @objc public var reGetVerifyCodeText: String {
+        get {
+            return _reGetVerifyText
+        }
+        set {
+            _reGetVerifyText = newValue
+            self.updateConstraints()
+        }
+    }
+    
+    /// 获取验证码字体
+    @objc public var getVerifyCodeFont: UIFont {
+        get {
+            return self.getVerifyCodeLabel.font
+        }
+        set {
+            self.getVerifyCodeLabel.font = newValue
+            self.updateConstraints()
+        }
+    }
+    
+    /// 倒计时样式
+    ///
+    /// 例如: "%d秒后重发"
+    @objc public var verifyCodeCountDownFormat: String {
+        get {
+            return _verifyCodeCountDownFormat
+        }
+        set {
+            guard newValue.contains("%d") else {
+                print("verifyCodeDownFormat格式错误")
+                return
+            }
+            _verifyCodeCountDownFormat = newValue
+            self.updateConstraints()
+        }
+    }
+    
+    /// 边框宽度
+    @objc public var borderWidth: CGFloat {
+        get {
+            return self.layer.borderWidth
+        }
+        set {
+            self.layer.borderWidth = newValue
+        }
+    }
+    
+    /// 边框颜色
+    @objc public var borderColor: CGColor? {
+        get {
+            return self.layer.borderColor
+        }
+        set {
+            self.layer.borderColor = newValue
+        }
+    }
+    
+    /// 圆倒角半径
+    @objc public var cornerRadius: CGFloat {
+        get {
+            return self.layer.cornerRadius
+        }
+        set {
+            self.layer.cornerRadius = newValue
+        }
+    }
+    
+    /// 重置验证码状态
+    /// 必须实现JHTextFieldDelegate.resetVerifyCode方法
+    @objc public func resetVerifyCode() {
+        guard let delegate = self.delegate else {
+            return
+        }
+        delegate.resetVerifyCode(self) { action in
+            switch action {
+            case .Success:
+                self.cancelTimer(isReset: true)
+                self.resetVerifyCodeFinished()
+            case .Fail:
+                return
+            }
+        }
+    }
+    
+    /// 更新UI
+    public override func updateConstraints() {
+        super.updateConstraints()
+        self.configUI()
+    }
+    
+    public init() {
+        super.init(frame: CGRect())
+        self.setParameter()
+    }
+    
+    public override init(frame: CGRect) {
+        super .init(frame: frame)
+        self.setParameter()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private
+    
+    func resetVerifyCodeFinished() {
+        guard let delegate = self.delegate,
+              delegate.responds(to: NSSelectorFromString("resetVerifyCodeDidFinished:")) == true
+        else {
+            return
+        }
+        delegate.resetVerifyCodeDidFinished(self)
+    }
     
     @objc func didClickEye() {
         self.eyeImageView.isHighlighted = !self.eyeImageView.isHighlighted
@@ -25,8 +319,7 @@ public class JHTextField: UIView {
             return
         }
         delegate.didClickGetVerifyCode(self) { action, time in
-            guard action == true, // 行为为true
-                  let time = time, // 持续时间不为nil
+            guard action == .Success, // 行为为true
                   time > 0 // 持续时间不为0
             else {
                 return
@@ -36,7 +329,7 @@ public class JHTextField: UIView {
             // 先清空上一次的倒计时行为
             self.timer?.invalidate()
             self.timer = nil
-            
+
             // 开始倒计时
             self.time = time
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -50,6 +343,7 @@ public class JHTextField: UIView {
         }
     }
     
+    
     func cancelTimer(isReset: Bool) {
         self.timer?.invalidate()
         self.timer = nil
@@ -58,8 +352,8 @@ public class JHTextField: UIView {
     }
     
     // MARK: - UI
+    
     func configUI() {
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(didClickBackground))
         self.addGestureRecognizer(tap)
         self.isUserInteractionEnabled = true
@@ -216,20 +510,6 @@ public class JHTextField: UIView {
     }
     
     // MARK: - Init
-    public init() {
-        super.init(frame: CGRect())
-        self.setParameter()
-    }
-    
-    public override init(frame: CGRect) {
-        super .init(frame: frame)
-        self.setParameter()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     deinit {
         self.timer?.invalidate()
         self.timer = nil

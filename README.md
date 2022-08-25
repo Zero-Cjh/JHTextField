@@ -1,5 +1,7 @@
 # JHTextField
 
+---
+### import JHTextField
 
 Cocoa Pods:
 
@@ -17,6 +19,7 @@ Framework
 
 ```
 clone https://github.com/Zero-Cjh/JHTextField
-open auto.app
-copy JHTextField.framework in you project
+打开自动打包程序 auto.app
+复制 JHTextField.framework 到你的工程
+JHTextField依赖SnapKit，需引入SnapKit ～> 5.6.0
 ```

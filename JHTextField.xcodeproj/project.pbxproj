@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F223532128B4D09F00550643 /* JHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223531E28B4D09F00550643 /* JHTextField.swift */; };
-		F22FE11D28B603C3001F9B75 /* JHTextField_Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22FE11B28B603C3001F9B75 /* JHTextField_Method.swift */; };
-		F22FE11E28B603C3001F9B75 /* JHTextField_Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22FE11C28B603C3001F9B75 /* JHTextField_Style.swift */; };
-		F22FE12428B6097C001F9B75 /* JHTextField_ThemeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22FE12328B6097C001F9B75 /* JHTextField_ThemeStyle.swift */; };
-		F28D0F7928B4AF7B00B17BCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F28D0F7828B4AF7B00B17BCD /* SnapKit */; };
+		F21FD9C228B70F8B00960D86 /* JHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21FD9BE28B70F8B00960D86 /* JHTextField.swift */; };
+		F21FD9C328B70F8B00960D86 /* JHTextField_ThemeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21FD9BF28B70F8B00960D86 /* JHTextField_ThemeStyle.swift */; };
+		F21FD9C528B70F8B00960D86 /* JHTextField_UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21FD9C128B70F8B00960D86 /* JHTextField_UITextFieldDelegate.swift */; };
+		F7B28921E6D06FADF93AB5E1 /* Pods_JHTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61883BD259B81BAEC233C71A /* Pods_JHTextField.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F223531528B4B54200550643 /* SnapKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SnapKit; sourceTree = "<group>"; };
-		F223531E28B4D09F00550643 /* JHTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JHTextField.swift; sourceTree = "<group>"; };
-		F22FE11B28B603C3001F9B75 /* JHTextField_Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JHTextField_Method.swift; sourceTree = "<group>"; };
-		F22FE11C28B603C3001F9B75 /* JHTextField_Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JHTextField_Style.swift; sourceTree = "<group>"; };
-		F22FE12328B6097C001F9B75 /* JHTextField_ThemeStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JHTextField_ThemeStyle.swift; sourceTree = "<group>"; };
+		61883BD259B81BAEC233C71A /* Pods_JHTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JHTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6439E287B69448F7F084025A /* Pods-JHTextField.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHTextField.debug.xcconfig"; path = "Target Support Files/Pods-JHTextField/Pods-JHTextField.debug.xcconfig"; sourceTree = "<group>"; };
+		F21FD9BE28B70F8B00960D86 /* JHTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JHTextField.swift; sourceTree = "<group>"; };
+		F21FD9BF28B70F8B00960D86 /* JHTextField_ThemeStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JHTextField_ThemeStyle.swift; sourceTree = "<group>"; };
+		F21FD9C128B70F8B00960D86 /* JHTextField_UITextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JHTextField_UITextFieldDelegate.swift; sourceTree = "<group>"; };
 		F28D0F6428B4AE0E00B17BCD /* JHTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JHTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F39D4F5A93D5E6240751469F /* Pods-JHTextField.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHTextField.release.xcconfig"; path = "Target Support Files/Pods-JHTextField/Pods-JHTextField.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,28 +28,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F28D0F7928B4AF7B00B17BCD /* SnapKit in Frameworks */,
+				F7B28921E6D06FADF93AB5E1 /* Pods_JHTextField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F223531428B4B54200550643 /* Packages */ = {
+		AC8CECBBA599A3F4FA33C419 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F223531528B4B54200550643 /* SnapKit */,
+				6439E287B69448F7F084025A /* Pods-JHTextField.debug.xcconfig */,
+				F39D4F5A93D5E6240751469F /* Pods-JHTextField.release.xcconfig */,
 			);
-			name = Packages;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		F223531D28B4D09F00550643 /* JHTextField */ = {
+		F21FD9BC28B70F8B00960D86 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				F223531E28B4D09F00550643 /* JHTextField.swift */,
-				F22FE11C28B603C3001F9B75 /* JHTextField_Style.swift */,
-				F22FE11B28B603C3001F9B75 /* JHTextField_Method.swift */,
-				F22FE12328B6097C001F9B75 /* JHTextField_ThemeStyle.swift */,
+				F21FD9BD28B70F8B00960D86 /* JHTextField */,
+			);
+			name = Sources;
+			path = Package/Sources;
+			sourceTree = "<group>";
+		};
+		F21FD9BD28B70F8B00960D86 /* JHTextField */ = {
+			isa = PBXGroup;
+			children = (
+				F21FD9BE28B70F8B00960D86 /* JHTextField.swift */,
+				F21FD9BF28B70F8B00960D86 /* JHTextField_ThemeStyle.swift */,
+				F21FD9C128B70F8B00960D86 /* JHTextField_UITextFieldDelegate.swift */,
 			);
 			path = JHTextField;
 			sourceTree = "<group>";
@@ -57,10 +66,10 @@
 		F28D0F5A28B4AE0E00B17BCD = {
 			isa = PBXGroup;
 			children = (
-				F223531428B4B54200550643 /* Packages */,
-				F28D0F6E28B4AE2A00B17BCD /* Sources */,
+				F21FD9BC28B70F8B00960D86 /* Sources */,
 				F28D0F6528B4AE0E00B17BCD /* Products */,
 				F28D0F7728B4AF7B00B17BCD /* Frameworks */,
+				AC8CECBBA599A3F4FA33C419 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,17 +81,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F28D0F6E28B4AE2A00B17BCD /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				F223531D28B4D09F00550643 /* JHTextField */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
 		F28D0F7728B4AF7B00B17BCD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61883BD259B81BAEC233C71A /* Pods_JHTextField.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,6 +106,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F28D0F6B28B4AE0E00B17BCD /* Build configuration list for PBXNativeTarget "JHTextField" */;
 			buildPhases = (
+				8D8235D0A7A03718ECD350A6 /* [CP] Check Pods Manifest.lock */,
 				F28D0F5F28B4AE0E00B17BCD /* Headers */,
 				F28D0F6028B4AE0E00B17BCD /* Sources */,
 				F28D0F6128B4AE0E00B17BCD /* Frameworks */,
@@ -116,7 +119,6 @@
 			);
 			name = JHTextField;
 			packageProductDependencies = (
-				F28D0F7828B4AF7B00B17BCD /* SnapKit */,
 			);
 			productName = JHTextField;
 			productReference = F28D0F6428B4AE0E00B17BCD /* JHTextField.framework */;
@@ -164,15 +166,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8D8235D0A7A03718ECD350A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JHTextField-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F28D0F6028B4AE0E00B17BCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F22FE11E28B603C3001F9B75 /* JHTextField_Style.swift in Sources */,
-				F22FE12428B6097C001F9B75 /* JHTextField_ThemeStyle.swift in Sources */,
-				F22FE11D28B603C3001F9B75 /* JHTextField_Method.swift in Sources */,
-				F223532128B4D09F00550643 /* JHTextField.swift in Sources */,
+				F21FD9C228B70F8B00960D86 /* JHTextField.swift in Sources */,
+				F21FD9C528B70F8B00960D86 /* JHTextField_UITextFieldDelegate.swift in Sources */,
+				F21FD9C328B70F8B00960D86 /* JHTextField_ThemeStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +207,6 @@
 /* Begin PBXTargetDependency section */
 		F28D0F7B28B4AF8000B17BCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = F28D0F7A28B4AF8000B17BCD /* SnapKit */;
 		};
 /* End PBXTargetDependency section */
 
@@ -308,6 +333,7 @@
 		};
 		F28D0F6C28B4AE0E00B17BCD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6439E287B69448F7F084025A /* Pods-JHTextField.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -338,6 +364,7 @@
 		};
 		F28D0F6D28B4AE0E00B17BCD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F39D4F5A93D5E6240751469F /* Pods-JHTextField.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -388,17 +415,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		F28D0F7828B4AF7B00B17BCD /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SnapKit;
-		};
-		F28D0F7A28B4AF8000B17BCD /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F28D0F5B28B4AE0E00B17BCD /* Project object */;
 }
