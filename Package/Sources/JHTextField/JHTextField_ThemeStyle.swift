@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension JHTextField {
+@objc public extension JHTextField {
     
     /// 全局间隔
     ///
