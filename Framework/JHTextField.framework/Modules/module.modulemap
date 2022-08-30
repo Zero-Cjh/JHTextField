@@ -1,4 +1,0 @@
-framework module JHTextField {
-  header "JHTextField-Swift.h"
-  requires objc
-}

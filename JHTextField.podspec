@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "JHTextField"
   
-  spec.version      = "1.0.1"
+  spec.version      = "1.1.0"
   
   spec.summary      = "A simple TextField with iOS."
 
@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/Zero-Cjh/JHTextField.git", :tag => "#{spec.version}" }
   
-  spec.source_files  = "Package/Sources/JHTextField/*.swift"
+  spec.source_files  = "Sources/JHTextField/*.swift"
   
   spec.framework = 'UIKit', 'Foundation'
   spec.dependency 'SnapKit'
