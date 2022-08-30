@@ -440,8 +440,8 @@ import SnapKit
     /// 眼睛ImageView
     lazy var eyeImageView: UIImageView = {
         eyeImageView = UIImageView()
-        eyeImageView.image = UIImage(named: "eyes_open")
-        eyeImageView.highlightedImage = UIImage(named: "eyes_close")
+        eyeImageView.image = UIImage(systemName: "eye.fill")
+        eyeImageView.highlightedImage = UIImage(systemName: "eye.slash.fill")
         eyeImageView.contentMode = .scaleAspectFit
         let tap = UITapGestureRecognizer(target: self, action: #selector(didClickEye))
         eyeImageView.addGestureRecognizer(tap)

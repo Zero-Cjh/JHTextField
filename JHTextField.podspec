@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "JHTextField"
   
-  spec.version      = "1.1.0"
+  spec.version      = "1.1.1"
   
   spec.summary      = "A simple TextField with iOS."
 
