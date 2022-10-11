@@ -23,6 +23,18 @@ import UIKit
         }
     }
     
+    /// 左侧Icon大小
+    ///
+    /// Deafult: 25, 25
+    static var leftImageSize: CGSize {
+        get {
+            return JHTextField_LeftImageSize
+        }
+        set {
+            JHTextField_LeftImageSize = newValue
+        }
+    }
+    
     /// 全局左侧未选中图片
     ///
     /// Default: pencil
@@ -181,8 +193,21 @@ import UIKit
             JHTextField_CornerRadius = newValue
         }
     }
+    
+    /// 文本长度限制
+    ///
+    /// Deafult: 0
+    static var maxCount: Int {
+        get {
+            return JHTextField_MaxCount
+        }
+        set {
+            JHTextField_MaxCount = newValue
+        }
+    }
 }
 
+private var JHTextField_LeftImageSize = CGSize(width: 25, height: 25)
 private var JHTextField_Padding: Double = 10
 private var JHTextField_LeftUnSelectedImage: UIImage? = .init(systemName: "pencil.circle")
 private var JHTextField_LeftSelectedImage: UIImage? = .init(systemName: "pencil.circle.fill")
@@ -197,3 +222,4 @@ private var JHTextField_GetVerifyCodeFont: UIFont = .systemFont(ofSize: 14, weig
 private var JHTextField_BorderWidth: CGFloat = 1
 private var JHTextField_borderColor: CGColor = UIColor.black.cgColor
 private var JHTextField_CornerRadius: CGFloat = 5
+private var JHTextField_MaxCount: Int = 0

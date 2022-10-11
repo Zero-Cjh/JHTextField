@@ -37,6 +37,16 @@ import SnapKit
     
     // MARK: - Public
     
+    /// 输入文本框内容
+    @objc public var text: String? {
+        get {
+            return self.textField.text
+        }
+        set {
+            self.textField.text = newValue
+        }
+    }
+    
     /// 代理
     @objc public var delegate: JHTextFieldDelegate? {
         get {
@@ -55,6 +65,16 @@ import SnapKit
         set {
             _padding = newValue
             self.updateConstraints()
+        }
+    }
+    
+    /// 左侧Icon大小
+    @objc public var leftImageSize: CGSize {
+        get {
+            return _leftImageSize
+        }
+        set {
+            _leftImageSize = newValue
         }
     }
     
@@ -257,6 +277,16 @@ import SnapKit
         }
     }
     
+    /// 文本最大长度
+    @objc public var maxCount: Int {
+        get {
+            return _maxCount
+        }
+        set {
+            _maxCount = newValue
+        }
+    }
+    
     /// 重置验证码状态
     /// 必须实现JHTextFieldDelegate.resetVerifyCode方法
     @objc public func resetVerifyCode() {
@@ -343,6 +373,14 @@ import SnapKit
         }
     }
     
+    @objc func textFieldDiDChangeValue(_ sender: UITextField) {
+        guard self.maxCount != 0,
+              let str = sender.text
+        else {
+            return
+        }
+        sender.text = String(str.prefix(self.maxCount))
+    }
     
     func cancelTimer(isReset: Bool) {
         self.timer?.invalidate()
@@ -368,10 +406,9 @@ import SnapKit
         self.addSubview(self.eyeImageView)
         
         self.leftImageView.snp.remakeConstraints { make in
-            make.top.equalTo(self).offset(self.padding)
+            make.centerY.equalTo(self)
             make.left.equalTo(self).offset(self.padding)
-            make.bottom.equalTo(self).offset(-self.padding)
-            make.height.equalTo(self.leftImageView.snp.width)
+            make.size.equalTo(self.leftImageSize)
         }
         
         var verifyCodeLabelWidth = 0.0
@@ -424,6 +461,7 @@ import SnapKit
         textField = UITextField()
         textField.delegate = self
         textField.keyboardType = .default
+        textField.addTarget(self, action: #selector(textFieldDiDChangeValue(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -461,6 +499,9 @@ import SnapKit
     /// 间距
     var _padding: Double = 0
     
+    /// Icon Size
+    var _leftImageSize: CGSize = CGSize()
+    
     /// 下一个输入框
     var _nextTextField: JHTextField?
     
@@ -479,6 +520,9 @@ import SnapKit
     /// 是否显示眼睛👀
     var _isAddEyeImage: Bool = false
     
+    /// 文本长度
+    var _maxCount: Int = 0
+    
     /// 获取文本长度
     /// - Parameters:
     ///   - str: 文本
@@ -493,6 +537,7 @@ import SnapKit
     
     func setParameter() {
         self.padding = JHTextField.padding
+        self.leftImageSize = JHTextField.leftImageSize
         self.borderColor = JHTextField.borderColor
         self.cornerRadius = JHTextField.cornerRadius
         self.borderWidth = JHTextField.borderWidth
@@ -503,6 +548,7 @@ import SnapKit
         self.getVerifyCodeText = JHTextField.getVerifyCodeText
         self.reGetVerifyCodeText = JHTextField.reGetVerifyCodeText
         self.verifyCodeCountDownFormat = JHTextField.verifyCodeCountDownFormat
+        self.maxCount = JHTextField.maxCount
         self.isVerifyTextField = false
         self.isAddEyeImage = false
         self.isSecureTextEntry = false
